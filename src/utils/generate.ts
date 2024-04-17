@@ -22,10 +22,10 @@ const getRandomValue = (value: string) => {
 }
 
 export const generate = ({length, ...passOptions}: GenerateParams) => {
-    const enabledRules = Object.keys(passOptions).filter((ruleKey) => passOptions[ruleKey as PasswordOption]);
+    const enabledOptions = Object.keys(passOptions).filter((optionKey) => passOptions[optionKey as PasswordOption]);
 
-    let password = enabledRules.map((ruleKey) => getRandomValue(passwordOptions[ruleKey as PasswordOption])).join('');
-    const allChars = enabledRules.reduce((acc, rule) => `${acc}${passwordOptions[rule as PasswordOption]}`, '')
+    let password = enabledOptions.map((option) => getRandomValue(passwordOptions[option as PasswordOption])).join('');
+    const allChars = enabledOptions.reduce((acc, option) => `${acc}${passwordOptions[option as PasswordOption]}`, '')
 
     while (password.length < length) {
         password = `${password}${getRandomValue(allChars)}`

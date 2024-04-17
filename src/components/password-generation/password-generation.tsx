@@ -1,3 +1,4 @@
+import {ChangeEvent, memo} from "react";
 import {ContentCopy as ContentCopyIcon} from "@mui/icons-material";
 import {
     Button,
@@ -12,9 +13,8 @@ import {
 import {usePasswordGenerator} from "../../hooks";
 import {PasswordOption} from "../../types";
 import styles from './password-genaration.module.scss';
-import {ChangeEvent} from "react";
 
-export const PasswordGeneration = () => {
+export const PasswordGeneration = memo(() => {
     const {options, passLength, setPathLength, setOption, generatePassword, password} = usePasswordGenerator();
     const onSliderChanged = (event: Event, value: number | number[]) => setPathLength(value as number);
     const onOptionChanged = (option: PasswordOption) => (event: ChangeEvent<HTMLInputElement>) => setOption(option, event.target.checked);
@@ -61,4 +61,4 @@ export const PasswordGeneration = () => {
             <Typography fontWeight="bold" fontSize="18px">Generate</Typography>
         </Button>
     </div>
-}
+});

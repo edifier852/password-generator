@@ -1,2 +1,2 @@
 export * from './use-password-generator';
-export * from './theme';
+export * from './use-theme';
