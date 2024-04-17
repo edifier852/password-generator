@@ -28,11 +28,9 @@ export const PasswordGeneration = memo(() => {
 
     return <div className={styles.wrapper}>
         <TextField
-            className={styles.textField}
             variant="outlined"
             value={password}
-            InputProps={{endAdornment: renderIconButton()}}
-        />
+            InputProps={{endAdornment: renderIconButton()}}/>
         <Typography mt="12px">{`Character length ${passLength}`}</Typography>
         <Slider min={4}
                 max={32}
