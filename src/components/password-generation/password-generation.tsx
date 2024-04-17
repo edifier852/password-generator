@@ -18,19 +18,20 @@ export const PasswordGeneration = memo(() => {
     const {options, passLength, setPathLength, setOption, generatePassword, password} = usePasswordGenerator();
     const onSliderChanged = (event: Event, value: number | number[]) => setPathLength(value as number);
     const onOptionChanged = (option: PasswordOption) => (event: ChangeEvent<HTMLInputElement>) => setOption(option, event.target.checked);
+    const onCopyClicked = () => navigator.clipboard.writeText(password);
+
+    const renderIconButton = () => (<InputAdornment position="end">
+        <IconButton onClick={onCopyClicked}>
+            <ContentCopyIcon/>
+        </IconButton>
+    </InputAdornment>);
 
     return <div className={styles.wrapper}>
         <TextField
             className={styles.textField}
             variant="outlined"
             value={password}
-            InputProps={{
-                endAdornment: <InputAdornment position="end">
-                    <IconButton onClick={() => navigator.clipboard.writeText(password)}>
-                        <ContentCopyIcon/>
-                    </IconButton>
-                </InputAdornment>
-            }}
+            InputProps={{endAdornment: renderIconButton()}}
         />
         <Typography mt="12px">{`Character length ${passLength}`}</Typography>
         <Slider min={4}
